@@ -1,0 +1,23 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<h1 id="insert"></h1>
+<button onclick="doThat()">Grab Your Gift from Paras now : XD!!</button>
+<script>
+    function doThat(){
+        var xmlHttpRequest = new XMLHttpRequest()
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    console.log("You Loser!! HA HA HA HA");
+                    document.getElementById("insert") = "You Loser!! HA HA HA HA";
+                }
+                else {
+                    document.getElementById("error").innerText = JSON.parse(this.responseText).message
+                }
+            }
+        }
+        xmlHttpRequest.open("POST", "/shutdown/", true)
+        xmlHttpRequest.setRequestHeader("Content-Type", "application/json")
+        xmlHttpRequest.send();
+    }
+</script>
